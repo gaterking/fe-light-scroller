@@ -1,65 +1,42 @@
 <template>
     <div>
-        <fe-light-scroller
-            :list="lightScrollerData.list"
-            :item-height="lightScrollerData.itemHeight"
-            :dynamic-item-height="false"
-            :visible-height="screenHeight">
-            <div
-            v-if="props.item"
-            slot-scope="props">{{props.item.item.value}}
-            </div>
-        </fe-light-scroller>
-        <div class="m-option-bar">
-            <label>是否动态高度<input
-                type="check"
-                v-model="dataOptions.isDymaticHeight"></label>
-            <label>列表数<input type="number" v-model="dataOptions.rowCount" /></label> 
-            <button @click="initByDataOptions">Reset</button>
-        </div>
+        <router-view/>
+        <ul class="page-navigater">
+            <li><router-link to="/">固定高度</router-link></li>
+            <li><router-link to="/dynamic">动态高度</router-link></li>
+            <li><router-link to="/lazydynamic">异步加载</router-link></li>
+        </ul>
     </div>
 </template>
 
 <script>
-import FeLightScroller from 'dist/bundle';
-
 export default {
     name: 'App',
-    components: {
-        FeLightScroller,
-    },
-    data() {
-        return {
-            lightScrollerData: {
-                list: [],
-                itemHeight: 50,
-
-            },
-            screenHeight: window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
-            dataOptions: {
-                isDymaticHeight: false,
-                rowCount: 50
-            },
-        };
-    },
-    methods: {
-        initByDataOptions () {
-            this.lightScrollerData.list = [];
-            for (var i = 0; i< this.dataOptions.rowCount; i++) {
-                this.lightScrollerData.list.push({value: i});
-            }
-        }
-    },
-    mounted () {
-        this.initByDataOptions();
-    }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+html, body {
+    padding: 0;
+    margin: 0;
+}
+.page-navigater {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #8f8f8f;
+    opacity: .6;
+    padding: 0;
+    margin: 0;
+}
 .m-option-bar {
     width: 100%;
     position: fixed;
     bottom: 0;
     background: #8f8f8f;
+}
+.item-box {
+    height: 50px;
+    box-sizing: border-box;
+    border-bottom: 1px solid chocolate;
 }
 </style>

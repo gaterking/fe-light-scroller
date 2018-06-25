@@ -55,7 +55,7 @@ const config = {
     ],
     resolve: {
         alias: {
-            dist: '../dist',
+            dist: path.join(__dirname, '../dist'),
         },
     },
 };
