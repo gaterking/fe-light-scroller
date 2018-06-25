@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import FeLightScroller from 'dist/bundle';
+import FeLightScroller from 'dist/fe-light-scroller';
 
 export default {
     components: {

@@ -22,25 +22,21 @@ export default {
             },
         };
     },
-    mounted() {
-        // this.$nextTick(()=> {
-        //     this.caculateSize(this.$refs.item);
-        // });
-    },
     methods: {
+        /**
+         * 计算节点高宽
+         */
         caculateSize(itemDom) {
             if (itemDom
                 && itemDom.ownerDocument
                 && itemDom.ownerDocument.defaultView
                 && itemDom instanceof itemDom.ownerDocument.defaultView.HTMLElement
             ) {
-                // let parentNode = itemDom.parentNode;
                 const itemRect = itemDom.getBoundingClientRect();
                 this.size = {
                     height: itemRect.height,
                     width: itemRect.width,
                 };
-                // this.$emit('sizeUpdated', this.showIndex, this.size);
             }
             return this.size;
         },

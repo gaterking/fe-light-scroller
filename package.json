@@ -4,7 +4,7 @@
   "description": "vue light scroller",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run build && cross-env NODE_ENV=development node ./build/example.devserver.js",
+    "dev": "npm run build:dev && cross-env NODE_ENV=development node ./build/example.devserver.js",
     "build:dev": "rollup -c=rollup.config.js",
     "build:prod": "cross-env NODE_ENV=production npm run build:dev",
     "test": "echo \"Error: no test specified\" && exit 1"

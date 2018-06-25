@@ -1,14 +1,16 @@
 <template>
-    <div>
+    <div
+        id="box"
+        class="m-fixed-heigt-scroll-div">
         <fe-light-scroller
             :list="lightScrollerData.list"
             :item-height="lightScrollerData.itemHeight"
-            :dynamic-item-height="true"
-            :visible-height="screenHeight">
+            :dynamic-item-height="false"
+            :visible-height="screenHeight"
+            box-id="box">
             <div
                 v-if="props.item"
                 slot-scope="props"
-                :style="{height: getRandomHeight() + 'px'}"
                 class="item-box">{{ props.item.item.value }}
             </div>
         </fe-light-scroller>
@@ -35,8 +37,9 @@ export default {
                 itemHeight: 50,
 
             },
-            screenHeight: window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
+            screenHeight: 500,
             dataOptions: {
+                // isDymaticHeight: false,
                 rowCount: 50,
             },
         };
@@ -51,9 +54,16 @@ export default {
                 this.lightScrollerData.list.push({ value: i });
             }
         },
-        getRandomHeight(min = 25, max = 200) {
-            return Math.random() * (max - min) + min;
-        },
     },
 };
 </script>
+<style lang="scss">
+.m-fixed-heigt-scroll-div {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    height: 500px;
+    overflow: scroll;
+    border: 1px solid #fff000;
+}
+</style>

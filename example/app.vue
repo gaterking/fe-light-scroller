@@ -5,6 +5,7 @@
             <li><router-link to="/">固定高度</router-link></li>
             <li><router-link to="/dynamic">动态高度</router-link></li>
             <li><router-link to="/lazydynamic">异步加载</router-link></li>
+            <li><router-link to="/fixheightdiv">容器滚动</router-link></li>
         </ul>
     </div>
 </template>

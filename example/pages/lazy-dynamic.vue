@@ -18,7 +18,7 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import FeLightScroller from 'dist/bundle';
+import FeLightScroller from 'dist/fe-light-scroller';
 import { setTimeout } from 'timers';
 
 export default {

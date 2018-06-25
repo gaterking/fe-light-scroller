@@ -16,41 +16,60 @@
 </template>
 
 <script>
-import getOffset from './utils/offset';
+import offset from './utils/offset';
 import WindowScroller from './window-scroller';
+import BoxScroller from './box-scroller';
 import RANGE_TYPE from './enum/range-type';
 import SizeManager from './size-manager';
 import ItemContainer from './item-container.vue';
 
 export default {
-    name: 'VirtualScroller',
+    name: 'LightScroller',
     components: {
         ItemContainer,
     },
     props: {
+        /**
+         * vId，调试使用
+         */
         vId: {
             type: String,
             default: '',
         },
+        /**
+         * 待渲染列表数组
+         */
         list: {
             type: Array,
             required: true,
         },
-        visibleHeight: { // 可视区域高度
+        /**
+         * 可视区域高度，px
+         */
+        visibleHeight: {
             type: Number,
             required: true,
         },
-        itemHeight: { // 行高
+        /**
+         * 固定行高，px
+         */
+        itemHeight: {
             type: Number,
             required: true,
         },
-        dynamicItemHeight: { // 是否动态高度，如果true，itemHeight将作为预估高度使用
+        /**
+         * 是否动态高度，如果true，itemHeight将作为预估高度使用
+         */
+        dynamicItemHeight: {
             type: Boolean,
             default: false,
         },
-        minTop: { // 最小滚动高度，用于计算内层padding-top，如果未设置，应该取div离body顶部的高度
-            type: Number,
-            default: 0,
+        /**
+         * 容器Id
+         */
+        boxId: {
+            type: String,
+            default: '',
         },
     },
     data() {
@@ -59,31 +78,28 @@ export default {
                 // 外层盒子样式
                 paddingTop: '0px',
                 paddingBottom: '0px',
-                // height: '0px'
             },
+            /**
+             * 可视区域渲染列表，是list的子集
+             */
             showList: [],
+            /**
+             * showList索引 {startIndex: 0, endIndex: 4}
+             */
             showIndex: {
                 startIndex: -1,
                 endIndex: -1,
-            }, // 显示列表索引 {startIndex: 0, endIndex: 4}
-            animatitonFrameId: null,
-            rafRunning: null,
+            },
             listSizeManager: null,
             scrollerManager: null,
             containerSize: { // 容器Rect
                 top: 0,
             },
-            // renderTimes: 0
             virtualScrollTimes: 0,
             renderStartTime: 0,
             orignScrollTop: -1,
             lastUpdatedIndex: null,
         };
-    },
-    computed: {
-    // isScrolling () {
-    //     return this.scrollerManager && this.scrollerManager.isScrolling;
-    // }
     },
     watch: {
         list: {
@@ -287,6 +303,8 @@ export default {
          * 是否在显示范围
          */
         isInVisibleRange(size, boxScrollTop, vHeight) {
+            // console.log(boxScrollTop);
+            // console.log(vHeight);
             const sizeY = size.Y;
             const sizeBottomY = sizeY + size.height;
             const boxVisibleBottomY = vHeight + boxScrollTop + 700; // 可视范围前后增加50px缓冲区
@@ -437,14 +455,22 @@ export default {
             return size;
         },
         caculateContainerSize() {
-            this.containerSize = getOffset(this.$refs.scrollBox);
+            this.containerSize = offset(this.$refs.scrollBox);
+            if (this.boxId) {
+                this.containerSize.top = 0;
+            }
         },
         initScroller() {
-            this.scrollerManager = new WindowScroller(this.virtualScroll);
+            if (this.boxId) {
+                this.scrollerManager = new BoxScroller(this.virtualScroll,
+                    document.getElementById(this.boxId));
+            } else {
+                this.scrollerManager = new WindowScroller(this.virtualScroll);
+            }
             this.caculateContainerSize();
         },
         destoryScroller() {
-            this.scrollerManager.destory();
+            this.scrollerManager.dispose();
         },
         debug(log) {
             // if (clear) {
