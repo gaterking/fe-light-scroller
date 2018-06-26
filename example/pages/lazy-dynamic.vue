@@ -3,7 +3,6 @@
         <fe-light-scroller
             :list="lightScrollerData.list"
             :item-height="lightScrollerData.itemHeight"
-            :dynamic-item-height="true"
             :visible-height="screenHeight">
             <div
                 v-if="props.item"

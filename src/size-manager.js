@@ -11,17 +11,14 @@ class SizeManager {
    *
    * @param {Object} param0 构造参数
    * @param {number} param0.count 节点总数
-   * @param {Object|function} param0.itemSizeGetter 节点大小
    * @param {string|number} param0.estimatedHeight 节点预计高度，动态计算节点大小时，
    * 节点的高度需要Dom添加到document才能获得，在这之前，可用这个值作为假高度
    */
     constructor({
         count,
-        itemSizeGetter,
         estimatedHeight,
     }) {
         this.count = count;
-        this.itemSizeGetter = itemSizeGetter;
         this.estimatedHeight = estimatedHeight;
         this.itemSizeCache = []; // 节点大小数据缓存
         this.explicitTotalHeight = 0; // 明确高度的节点合计高度

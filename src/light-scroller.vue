@@ -60,10 +60,10 @@ export default {
         /**
          * 是否动态高度，如果true，itemHeight将作为预估高度使用
          */
-        dynamicItemHeight: {
-            type: Boolean,
-            default: false,
-        },
+        // dynamicItemHeight: {
+        //     type: Boolean,
+        //     default: false,
+        // },
         /**
          * 容器Id
          */
@@ -125,7 +125,6 @@ export default {
         // 初始化SizeManager
         this.listSizeManager = new SizeManager({
             count: this.list.length,
-            itemSizeGetter: this.dynamicItemHeight ? this.getItemDomSize : this.itemHeight,
             estimatedHeight: this.itemHeight,
         });
     },
@@ -139,8 +138,6 @@ export default {
         ) {
             return;
         }
-
-        // let s = new Date().getTime();
         for (let showIndex = 0; showIndex < this.$refs.itemBox.length; showIndex += 1) {
             const i = this.showIndex.startIndex + showIndex;
             const boxSize = this.$refs.itemBox[showIndex].getSize();
@@ -413,7 +410,6 @@ export default {
             const vListIndex = this.getVisibleList(boxScrollTop,
                 this.showIndex.startIndex,
                 this.visibleHeight);
-            // 获取显示的列表itemSizeGetter
             // let showListUpdated = false;
             if (vListIndex
             && this.showIndex
@@ -449,10 +445,6 @@ export default {
                 this.boxStyle.paddingTop = `${_paddingTop}px`;
                 this.boxStyle.paddingBottom = `${_paddingBottom}px`;
             });
-        },
-        getItemDomSize() {
-            const size = null;
-            return size;
         },
         caculateContainerSize() {
             this.containerSize = offset(this.$refs.scrollBox);

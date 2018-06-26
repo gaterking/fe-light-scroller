@@ -4,7 +4,7 @@
 
 ## 原理
 
-v-for 能够渲染页面列表，但如果列表数据超大，会产生庞大的dom，对浏览器的渲染压力非常大。fe-light-scroller 能够通过对屏幕或容器的现实区域进行计算，只渲染可视范围的列表节点，使浏览器dom大大减少，从而加快浏览器性能。
+v-for 能够渲染页面列表，但如果列表数据超大，会产生庞大的dom，对浏览器的渲染压力非常大。fe-light-scroller通过对屏幕或容器的现实区域进行计算，只渲染可视范围的列表节点，使浏览器dom数量大大减少，从而加快浏览器性能。
 对于非固定高度的列表，通过动态计算节点的高度进行计算，适用于固定高度、动态高度等多种场景。
 
 ## Demo
@@ -55,7 +55,6 @@ import FeLightScroller from 'fe-light-scroller';
 |-----|-----|-----|-----|
 | list | 所有的列表数据Array< Object > | Y | - |
 | item-height | 每行节点高度 Number | Y | - |
-| dynamic-item-height Boolean false=所有行高度与item-height一致, true=行高度按其实际高度为准 | 每行是否动态高度 | N | false |
 | visible-height | 可是范围高度 Number，屏幕高度或容器高度 | Y | true |
 | box-id | 外层容器id String, 如果是在div容器里滚动，需要传递div的id | N | false |
 

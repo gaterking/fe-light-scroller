@@ -5,7 +5,6 @@
         <fe-light-scroller
             :list="lightScrollerData.list"
             :item-height="lightScrollerData.itemHeight"
-            :dynamic-item-height="false"
             :visible-height="screenHeight"
             box-id="box">
             <div
