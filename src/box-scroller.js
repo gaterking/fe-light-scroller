@@ -25,6 +25,10 @@ class BoxScroller {
      * 创建一个RAF回调，回调结束后检查是否有等待的scroll，如果有，重新触发
      */
     createRAF(scrollTop) {
+        if (this.rafId) {
+            // 有正在执行的回调时间
+            return;
+        }
         const newRafId = raf(() => {
             this.scrollTop = scrollTop || this.getScrollY();
             if (this.scrollCallback) {
@@ -32,6 +36,7 @@ class BoxScroller {
                     scrollTop: this.scrollTop,
                 });
             }
+            this.rafId = null;
         });
         if (!this.rafId) {
             this.rafId = newRafId;
