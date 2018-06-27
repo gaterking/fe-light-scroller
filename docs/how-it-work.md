@@ -54,4 +54,4 @@ window.addEventListener('scroll', scroll);
 通常来说，rAF 被调用的频率是每秒 60 次，也就是 1000/60 ，触发频率大概是 16.7ms，在低端浏览器中，我们可以使用setTimeout来模拟这个触发频率。
 
 ### fe-light-scroller
-基于上面的这些理论，这里实现了一个vue组件`fe-light-scroller`，可以直接向v-for那样简单地进行列表的渲染。
+基于上面的这些理论，这里实现了一个vue组件[`fe-light-scroller`](https://github.com/gaterking/fe-light-scroller)，可以直接向v-for那样简单地进行列表的渲染。

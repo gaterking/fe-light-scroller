@@ -20,6 +20,7 @@ npm run dev
 ## 安装
 
 ```shell
+// 内网仓库，外网项目可以clone代码执行npm run build:prod，引用umd文件dist/fe-light-scroller.min.js
 npm i fe-light-scroller -S
 ```
 

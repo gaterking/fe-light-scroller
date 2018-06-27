@@ -2,7 +2,7 @@
   "name": "fe-light-scroller",
   "version": "1.0.0",
   "description": "vue light scroller",
-  "main": "index.js",
+  "main": "dist/fe-light-scroller.min.js",
   "scripts": {
     "dev": "npm run build:dev && cross-env NODE_ENV=development node ./build/example.devserver.js",
     "build:dev": "rollup -c=rollup.config.js",
@@ -12,6 +12,9 @@
   "keywords": [
     "vue",
     "scroller"
+  ],
+  "files": [
+    "dist/fe-light-scroller.min.js"
   ],
   "author": "Seasons.Lee",
   "license": "MIT",
